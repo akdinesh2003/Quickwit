@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"tsx watch server/index.ts\"",
     "build": "tsc && vite build",
+    "build:server": "tsc",
+    "build:client": "vite build",
     "preview": "vite preview",
     "start": "node dist/server/index.js"
   },
