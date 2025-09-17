@@ -32,7 +32,12 @@ export const useSocket = create<SocketState>()(
       }
 
       console.log('Connecting to quiz server...');
-      const newSocket = io('http://localhost:5000', {
+      const serverUrl = process.env.NODE_ENV === 'production' 
+        ? window.location.origin // Use same domain as the website
+        : 'http://localhost:5000';
+      
+      console.log('Connecting to:', serverUrl);
+      const newSocket = io(serverUrl, {
         path: '/socket.io/',
         transports: ['websocket', 'polling'],
         autoConnect: true,

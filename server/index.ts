@@ -14,14 +14,18 @@ const app = express();
 
 // Add CORS middleware
 app.use(cors({
-  origin: ["http://localhost:3000", "http://192.168.29.22:3000"],
+  origin: process.env.NODE_ENV === 'production' 
+    ? ["https://quickwit-akdinesh2003.vercel.app", "https://*.vercel.app"]
+    : ["http://localhost:3000", "http://192.168.29.22:3000"],
   credentials: true
 }));
 
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://192.168.29.22:3000"],
+    origin: process.env.NODE_ENV === 'production' 
+      ? ["https://quickwit-akdinesh2003.vercel.app", "https://*.vercel.app"]
+      : ["http://localhost:3000", "http://192.168.29.22:3000"],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
