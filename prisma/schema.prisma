@@ -1,0 +1,16 @@
+﻿generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Quiz {
+  id        String   @id @default(uuid())
+  title     String
+  questions Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
